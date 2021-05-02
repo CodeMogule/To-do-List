@@ -16,6 +16,12 @@ html{
     overflow-x: hidden;
 }
 
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
 /* HEADER */
 header{
     background: #ff00cc; /* fallback for old browsers */
@@ -40,14 +46,14 @@ header h4{
 }
 
 /* FORMS */
-form{
+.form{
    display: flex;
   transform: translate(15%);
    margin-top: 20px;
    gap: -50px;
 }
 
-form input{
+.form input{
     width: 72%;
     height: 50px;
     border-radius: 5px;
@@ -57,9 +63,9 @@ form input{
    border-bottom-right-radius: 0;
 }
 
-form button {
+.form a {
     border-radius: 5px;
-    padding: 5px;
+    padding: 10px;
     font-size: 80%;
     cursor: pointer;
     color: #FF00CC;
@@ -69,9 +75,10 @@ form button {
    border-top-left-radius: 0;
    border-bottom-left-radius: 0;
    transition: 0.5s;
+   text-align: center;
 }
 
-form button:hover {
+.form a:hover {
 background-color:#FF00CC ;
 color: white;
 }
@@ -103,3 +110,23 @@ color: white;
 .edit{
    color: #FF00CC
 }
+
+.btn-clear-all{
+    text-align: center;
+    margin-top: 20px;
+    font-size: 120%;
+}
+
+.btn-clear-all a {
+    border: 2px solid #FF00CC ;
+    padding: 10px;
+    text-decoration: none;
+    color: #FF00CC;
+    transition: 0.5s;
+}
+
+.btn-clear-all a:hover {
+    background-color: #ff00cc;
+    color: white;
+}
+
