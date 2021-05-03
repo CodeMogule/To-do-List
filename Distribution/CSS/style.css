@@ -40,6 +40,11 @@ h1{
     transform: translate(0,20px);
 }
 
+.time{
+    position: absolute;
+    transform: translate(-30px,60px);
+}
+
 /* FORMS */
 .form{
    display: flex;
@@ -86,20 +91,35 @@ color: white;
     margin-top: 30px;
 }
 
-.item{
-    display: flex;
-    justify-content:space-between ;
-    transform: translate(30px);
-    margin: 30px;
-    border-bottom: 1px solid rgb(99, 99, 99);
+.lists{
+    list-style: none;
+    
 }
+.to-do{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid black;
+    margin: 30px;
+}
+.to-do li{
+    flex: 1;
+    transform: translate(30px);;
+    margin-right: 50px;
+}
+
 
 .correct{
     color: green;
+    cursor: pointer !important;
 }
 
 .x{
-    color: red;
+    color: red; 
+}
+
+.fa-check-circle,
+.fa-times-circle{
+    pointer-events: none;
 }
 
 .edit{
@@ -129,4 +149,16 @@ button{
     background-color: transparent;
     border-color:transparent ;
     cursor: pointer;
+}
+
+.completed{
+    text-decoration: line-through black;
+    transition: 0.5s;
+    color: green;
+}
+
+p{
+    margin-top: 100px;
+    color: red;
+    display: none;
 }

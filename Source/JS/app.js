@@ -1,71 +1,90 @@
 const addBtn = document.querySelector('.form a')
 const textBox = document.querySelector('.form input')
 const item = document.querySelector('.item-main-container')
-const items = document.querySelector('.items')
-const list = document.getElementById('list')
-const close = document.getElementById('close')
+const lists = document.querySelector('.lists')
+const lastDiv = document.querySelector('.btn-clear-all')
+const lastDivP = document.querySelector('.btn-clear-all p')
+const time = document.querySelector('.time')
 
+addBtn.addEventListener('click',addList)
+lists.addEventListener('click',deleteItem)
+lists.addEventListener('click',completedItem)
+window.addEventListener('keypress',enterBtn)
 
-function ui(){
-addBtn.addEventListener('click',()=>{
-if(textBox.value === ''){
-    alert('please add an item')
-}
-else{
-   uiDisplay()
-}
-})
-
-document.addEventListener('keypress',(event)=>{
-
-if(event.keyCode === 13){
-    if(textBox.value === ""){
-        alert('please add an item')
-    }
-    else{
-        uiDisplay()
-    }
-   }
-})
-}
-let data = []
-
-function uiDisplay(){
-
-    let counter = 0
-    const markup = `
-    <div class="item-main-container" id="list-${counter+=1}">
-    <div class="item">
-                    <h5 class = "item-name text-capitalize">${textBox.value}</h5>
-                    <div class="task-btn">
-                       <button><i class="far fa-times-circle x"></i></button>
-                    </div>
-                    </div
-    `
+ function timeZone(){
+    let now,months,month,year;
     
-        item.insertAdjacentHTML("afterbegin", markup)
+    now = new Date()
+    months = ['January' , 'February' , 'March', 'April', 'May', 'June', 'July','August','September','October','November','December']
+    month = now.getMonth()
+    year = now.getFullYear()
+   time.textContent = months[month] + " " + year
 }
 
-ui()
+timeZone()
 
 
-items.addEventListener('click',deleteUi)
-
-
-function deleteUi(eve){
-let id;
-    id = eve.target.parentNode.parentNode.parentNode.parentNode.id
-
-    if(id){
-        //remove list
-        x(id)
+function enterBtn(e){
+    if(e.keyCode === 13){
+        if(textBox.value === ''){
+            lastDivP.style.display = 'block'
+        }else{
+            addList()
+        }
     }
 }
 
-function x(selectid){
-    let elements = document.getElementById(selectid)
-    elements.parentNode.removeChild(elements)
+
+function addList(e){
+   // console.log('5ara')
+
+   if(textBox.value === ""){
+      lastDivP.style.display = 'block'
+   }else{
+
+    lastDivP.style.display = 'none'
+
+   const toDoDiv = document.createElement('div')
+   toDoDiv.classList.add('to-do')
+
+   const li = document.createElement('li')
+   li.classList.add('to-do-list')
+   li.innerText= textBox.value
+   toDoDiv.appendChild(li)
+
+   const correct = document.createElement('button')
+   correct.innerHTML = '<i class="far fa-check-circle"></i>'
+   correct.classList.add('correct')
+   toDoDiv.appendChild(correct)
+
+   const x = document.createElement('button')
+   x.innerHTML = '<i class="far fa-times-circle"></i>'
+   x.classList.add('x')
+   toDoDiv.appendChild(x)
+
+   lists.appendChild(toDoDiv)
+
+   textBox.value=''
+   }
 }
 
 
-const hss = document.querySelector('.item-name')
+function deleteItem(event){
+    const item = event.target
+    if(item.classList[0] === 'x'){
+    const todo = item.parentElement
+    todo.remove()
+    }
+}
+
+function completedItem(event){
+    
+    const item = event.target
+    console.log(item)
+    if(item.classList[0] === 'correct'){
+        console.log(item)
+        const comp = item.parentElement;
+        comp.classList.toggle('completed')
+
+    }
+}

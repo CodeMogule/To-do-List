@@ -1,0 +1,11 @@
+@media only screen and (max-width:430px){
+    .form input{
+        width: 50% !important;
+    }
+}
+
+@media only screen and (max-width:320px){
+    .time{
+       transform: translate(-50%,250%) !important;
+    }
+}
