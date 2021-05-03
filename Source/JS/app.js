@@ -1,6 +1,10 @@
 const addBtn = document.querySelector('.form a')
 const textBox = document.querySelector('.form input')
 const item = document.querySelector('.item-main-container')
+const items = document.querySelector('.items')
+const list = document.getElementById('list')
+const close = document.getElementById('close')
+
 
 function ui(){
 addBtn.addEventListener('click',()=>{
@@ -22,27 +26,46 @@ if(event.keyCode === 13){
         uiDisplay()
     }
    }
-        //console.log('lll')
-   
-
 })
+}
+let data = []
 
 function uiDisplay(){
+
+    let counter = 0
     const markup = `
+    <div class="item-main-container" id="list-${counter+=1}">
     <div class="item">
-                    <h5>${textBox.value}</h5>
+                    <h5 class = "item-name text-capitalize">${textBox.value}</h5>
                     <div class="task-btn">
-                       <a href=""><i class="far fa-check-circle correct"></i></a>
-                       <a href=""><i class="far fa-edit edit"></i></a>
-                       <a href=""><i class="far fa-times-circle x"></i></a>
+                       <button><i class="far fa-times-circle x"></i></button>
                     </div>
+                    </div
     `
-    item.insertAdjacentHTML("afterbegin", markup)
-}
-
-
+    
+        item.insertAdjacentHTML("afterbegin", markup)
 }
 
 ui()
 
 
+items.addEventListener('click',deleteUi)
+
+
+function deleteUi(eve){
+let id;
+    id = eve.target.parentNode.parentNode.parentNode.parentNode.id
+
+    if(id){
+        //remove list
+        x(id)
+    }
+}
+
+function x(selectid){
+    let elements = document.getElementById(selectid)
+    elements.parentNode.removeChild(elements)
+}
+
+
+const hss = document.querySelector('.item-name')

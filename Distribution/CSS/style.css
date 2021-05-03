@@ -40,11 +40,6 @@ h1{
     transform: translate(0,20px);
 }
 
-header h4{
-    margin-top: 85px;
-    font-size: 120%;
-}
-
 /* FORMS */
 .form{
    display: flex;
@@ -130,3 +125,8 @@ color: white;
     color: white;
 }
 
+button{
+    background-color: transparent;
+    border-color:transparent ;
+    cursor: pointer;
+}
